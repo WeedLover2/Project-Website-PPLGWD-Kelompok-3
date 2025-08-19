@@ -13,7 +13,7 @@ exports.getProducts = async (req, res) => {
 
 exports.getDetailProduct = async (req, res) => {
     try {
-        const { id } = req.params; // DIPERBAIKI: req.paramsl -> req.params
+        const { id } = req.params; 
 
         // Fetch the product from the database using Mongoose
         const product = await Product.findById(id);
@@ -60,7 +60,7 @@ exports.deleteProduct = async (req, res) => {
         await cloudinary.uploader.destroy(product.cloudinaryId);
 
         // Hapus file dari MongoDB (Database)
-        await product.deleteOne(); // DIPERBAIKI: productdeleteOne -> product.deleteOne
+        await product.deleteOne();
 
         res.status(200).json({ message: "Product deleted successfully" });
     } catch (err) {
@@ -94,7 +94,7 @@ exports.updateProduct = async (req, res) => {
         const updateProduct = {
             ...req.body,
             thumbnail: result?.secure_url || product.thumbnail,
-            cloudinaryId: result?.public_id || product.cloudinaryId, // DIPERBAIKI: publid_id -> public_id
+            cloudinaryId: result?.public_id || product.cloudinaryId, 
         };
 
         // Simpan pembaruan ke database

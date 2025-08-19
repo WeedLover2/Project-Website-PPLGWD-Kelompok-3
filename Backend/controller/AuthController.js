@@ -22,7 +22,7 @@ exports.signIn = async (req, res) => {
   }
 
   try {
-    // Cek apakah pengguna terdaftar (dengan logging)
+    // Cek apakah pengguna terdaftar (dengan login)
     console.log('Searching for user with email:', email);
     const user = await User.findOne({ email: email.toLowerCase().trim() });
     console.log('User found in database:', user ? 'YES' : 'NO');
@@ -42,7 +42,7 @@ exports.signIn = async (req, res) => {
       return res.status(401).json({ message: 'User not registered' });
     }
 
-    // Cek password dengan logging
+    // Cek password dengan login 
     console.log('Comparing passwords...');
     console.log('Input password:', password);
     console.log('Stored password:', user.password);
